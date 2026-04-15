@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quotation - Arouza Techlabs</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-blue: #0066ff;
+        --dark-blue: #004ecc;
+        --accent-orange: #ff8a00;
+        --bg-dark: #121212;
+        --text-main: #1a1a1a;
+        --text-gray: #666666;
+        --card-bg: #f7f8fc;
+        --btn-gradient: linear-gradient(90deg, #4364f7, #304ffe);
+        --white: #ffffff;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        --shadow-card: 0 15px 35px rgba(0, 102, 255, 0.1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f0f2f5;
+        color: var(--text-main);
+        line-height: 1.6;
+        padding: 20px; /* Reduced for mobile comfort */
+      }
+
+      /* Responsive Document Container */
+      .document-wrapper {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: var(--white);
+        box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+        padding: 60px;
+        border-radius: 4px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Header Section */
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 30px;
+        margin-bottom: 40px;
+        flex-wrap: wrap; /* Allows wrapping on small screens */
+        gap: 20px;
+      }
+
+      .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .company-logo {
+        height: 50px;
+        width: auto;
+        object-fit: contain;
+        display: block;
+      }
+
+      .company-name-large {
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        font-size: clamp(18px, 4vw, 24px); /* Fluid typography */
+        color: var(--primary-blue);
+        letter-spacing: -0.5px;
+        line-height: 1;
+      }
+
+      .contact-info {
+        text-align: right;
+        font-size: 13px;
+        color: var(--text-gray);
+      }
+
+      .contact-info strong {
+        display: block;
+        font-size: 16px;
+        color: var(--text-main);
+        margin-bottom: 4px;
+      }
+
+      /* Title Section */
+      .title-section {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .title-section h1 {
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        font-size: clamp(20px, 5vw, 28px);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        color: var(--text-main);
+      }
+
+      .prepared-for {
+        color: var(--text-gray);
+        font-size: clamp(14px, 3.5vw, 16px);
+      }
+
+      .prepared-for span {
+        color: var(--primary-blue);
+        font-weight: 600;
+      }
+
+      /* Introduction */
+      .intro-text {
+        margin-bottom: 30px;
+        text-align: left;
+        font-size: 15px;
+        color: #444;
+      }
+
+      /* Pricing Grid - Highly Responsive */
+      .pricing-section {
+        margin: 40px 0;
+      }
+
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        align-items: stretch;
+      }
+
+      .pricing-card {
+        background: var(--card-bg);
+        border-radius: 20px;
+        padding: 30px 20px;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.3s ease;
+        position: relative;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .pricing-card.featured {
+        background: var(--btn-gradient);
+        color: white;
+        z-index: 2;
+        box-shadow: var(--shadow-card);
+      }
+
+      .featured-badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 3px 10px;
+        border-radius: 20px;
+        font-size: 10px;
+        font-weight: 600;
+        backdrop-filter: blur(5px);
+        text-transform: uppercase;
+      }
+
+      .card-header h3 {
+        font-size: 17px;
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+
+      .price {
+        font-size: 30px;
+        font-weight: 700;
+        margin-bottom: 15px;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .price span {
+        font-size: 13px;
+        font-weight: 400;
+        opacity: 0.8;
+      }
+
+      .divider {
+        height: 1px;
+        background: rgba(0, 0, 0, 0.08);
+        margin: 15px 0;
+      }
+
+      .featured .divider {
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      .features-list {
+        list-style: none;
+        margin-bottom: 25px;
+        flex-grow: 1;
+      }
+
+      .features-list li {
+        font-size: 13px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      .features-list li::before {
+        content: "✓";
+        font-weight: 700;
+        color: var(--primary-blue);
+        flex-shrink: 0;
+      }
+
+      .featured .features-list li::before {
+        color: white;
+      }
+
+      .select-btn {
+        display: block;
+        text-align: center;
+        padding: 12px;
+        border-radius: 10px;
+        background: var(--btn-gradient);
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 13px;
+        transition: 0.2s;
+      }
+
+      .featured .select-btn {
+        background: white;
+        color: var(--primary-blue);
+      }
+
+      /* Sections Styling */
+      .section-title {
+        font-family: "Poppins", sans-serif;
+        font-size: 16px;
+        color: var(--primary-blue);
+        margin: 35px 0 15px 0;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .section-title::after {
+        content: "";
+        flex-grow: 1;
+        height: 1px;
+        background: #eee;
+      }
+
+      /* Lists */
+      .bullet-list {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      .bullet-list li {
+        position: relative;
+        padding-left: 20px;
+        margin-bottom: 8px;
+        font-size: 14px;
+      }
+
+      .bullet-list li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: var(--primary-blue);
+        font-size: 18px;
+      }
+
+      .mou-list {
+        list-style: none;
+        counter-reset: mou-counter;
+      }
+
+      .mou-list li {
+        counter-increment: mou-counter;
+        margin-bottom: 15px;
+        position: relative;
+        padding-left: 35px;
+        font-size: 14px;
+      }
+
+      .mou-list li::before {
+        content: counter(mou-counter);
+        position: absolute;
+        left: 0;
+        top: 2px;
+        width: 22px;
+        height: 22px;
+        background: #f0f4ff;
+        color: var(--primary-blue);
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        font-weight: 700;
+      }
+
+      /* Why Choose Us Grid */
+      .benefits-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 30px;
+      }
+
+      .benefit-item strong {
+        display: block;
+        font-size: 14px;
+        margin-bottom: 2px;
+        color: var(--text-main);
+      }
+
+      .benefit-item p {
+        font-size: 13px;
+        color: var(--text-gray);
+      }
+
+      /* Acceptance Section */
+      .acceptance-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-top: 40px;
+        padding-top: 20px;
+      }
+
+      .sig-line {
+        border-bottom: 1px solid #1a1a1a;
+        margin-top: 30px;
+      }
+
+      .sig-label {
+        font-size: 10px;
+        color: var(--text-gray);
+        margin-top: 4px;
+        text-transform: uppercase;
+        font-weight: 600;
+      }
+
+      /* Footer */
+      footer {
+        margin-top: 50px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+        text-align: center;
+        font-size: 11px;
+        color: var(--text-gray);
+      }
+
+      /* Mobile & Tablet Specific Breakpoints */
+      @media (max-width: 900px) {
+        .pricing-grid {
+          grid-template-columns: 1fr;
+          gap: 25px;
+        }
+        .pricing-card.featured {
+          transform: none; /* Remove scale for mobile stability */
+        }
+        .document-wrapper {
+          padding: 40px 25px;
+        }
+      }
+
+      @media (max-width: 600px) {
+        header {
+          flex-direction: column;
+          text-align: center;
+        }
+        .contact-info {
+          text-align: center;
+        }
+        .benefits-grid,
+        .acceptance-section {
+          grid-template-columns: 1fr;
+        }
+        .logo-container {
+          justify-content: center;
+        }
+        .document-wrapper {
+          padding: 30px 15px;
+        }
+        .title-section {
+          margin-bottom: 30px;
+        }
+      }
+
+      /* Print Settings (Preserves PDF Look) */
+      @media print {
+        body {
+          background: white;
+          padding: 0;
+        }
+        .document-wrapper {
+          box-shadow: none;
+          padding: 40px;
+          border: none;
+        }
+        .pricing-card {
+          break-inside: avoid;
+          border: 1px solid #eee;
+        }
+        .select-btn {
+          border: 1px solid #000;
+          color: black !important;
+          background: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="document-wrapper">
+      <header>
+        <div class="logo-container">
+          <img
+            src="logo.png"
+            alt="Arouza Techlabs Logo"
+            class="company-logo"
+            onerror="
+              this.style.display = 'none';
+              this.nextElementSibling.style.display = 'block';
+            "
+          />
+          <div class="company-name-large">AROUZA TECHLABS</div>
+        </div>
+        <div class="contact-info">
+          <strong>Arouza Techlabs</strong>
+          contact@arouzatechlabs.in<br />
+          www.arouzatechlabs.in
+        </div>
+      </header>
+
+      <section class="title-section">
+        <h1>Quotation for Website Development</h1>
+        <div class="prepared-for">
+          Prepared For: <span>GNANA MUDRA VIDYA MANDIR</span>
+        </div>
+      </section>
+
+      <div class="intro-text">
+        <p>
+          <strong>Subject: Proposal for Website Development Services</strong>
+        </p>
+        <p style="margin-top: 8px">Dear Sir/Madam,</p>
+        <p>
+          We are pleased to present this quotation for the development of a
+          professional, responsive, and modern website for
+          <strong>GNANA MUDRA VIDYA MANDIR</strong>. Our objective is to deliver
+          a high-quality digital platform that enhances your institution’s
+          online presence.
+        </p>
+      </div>
+
+      <section class="pricing-section">
+        <h2 class="section-title">Investment Plans</h2>
+        <div class="pricing-grid">
+          <!-- Basic Plan -->
+          <div class="pricing-card">
+            <div class="card-header">
+              <h3>Basic Plan</h3>
+              <div class="price">₹7,999 <span>/project</span></div>
+            </div>
+            <div class="divider"></div>
+            <ul class="features-list">
+              <li>5 pages or single-scroll</li>
+              <li>Fully responsive design</li>
+              <li>1 year support</li>
+              <li>Modern UI (2 revisions)</li>
+              <li>Contact form + Maps</li>
+              <li>Basic SEO (meta tags)</li>
+            </ul>
+            <a href="#" class="select-btn">Select Plan</a>
+          </div>
+
+          <!-- Standard Plan -->
+          <div class="pricing-card featured">
+            <div class="featured-badge">Most Popular</div>
+            <div class="card-header">
+              <h3>Standard Plan</h3>
+              <div class="price">₹14,999 <span>/project</span></div>
+            </div>
+            <div class="divider"></div>
+            <ul class="features-list">
+              <li>Everything in Basic</li>
+              <li>Up to 15 pages</li>
+              <li>2 years support</li>
+              <li>CMS (WordPress/static)</li>
+              <li>4 revisions + speed optimisation</li>
+              <li>SEO + Google Analytics</li>
+            </ul>
+            <a href="#" class="select-btn">Select Plan</a>
+          </div>
+
+          <!-- Premium Plan -->
+          <div class="pricing-card">
+            <div class="card-header">
+              <h3>Premium Plan</h3>
+              <div class="price">₹24,999 <span>/project</span></div>
+            </div>
+            <div class="divider"></div>
+            <ul class="features-list">
+              <li>Everything in Standard</li>
+              <li>Unlimited pages</li>
+              <li>Custom design + Animations</li>
+              <li>Priority support (5 years)</li>
+              <li>Security hardening</li>
+              <li>Performance Optimization</li>
+            </ul>
+            <a href="#" class="select-btn">Select Plan</a>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-title">Project Timelines</h2>
+        <ul class="bullet-list">
+          <li><strong>Basic Plan:</strong> 7 – 10 Working Days</li>
+          <li><strong>Standard Plan:</strong> 10 – 20 Working Days</li>
+          <li><strong>Premium Plan:</strong> 15 – 25 Working Days</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="section-title">Terms & Conditions (MOU)</h2>
+        <ul class="mou-list">
+          <li>
+            <strong>Agreement Requirement:</strong> Project commences after MOU
+            signing.
+          </li>
+          <li>
+            <strong>Scope of Work:</strong> Services limited to selected plan
+            deliverables.
+          </li>
+          <li>
+            <strong>Non-Cancellation:</strong> Agreement is legally binding once
+            signed.
+          </li>
+          <li>
+            <strong>Client Responsibilities:</strong> Timely provision of
+            content/media.
+          </li>
+          <li>
+            <strong>Delivery:</strong> Final approval required before
+            deployment.
+          </li>
+          <li>
+            <strong>IP Ownership:</strong> Transferred upon full payment
+            clearance.
+          </li>
+          <li><strong>Payments:</strong> Milestones defined within the MOU.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="section-title">Additional Notes</h2>
+        <ul class="bullet-list">
+          <li>Domain & hosting charges are included.</li>
+          <li>Extra features quoted separately (Free for Premium).</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="section-title">Why Choose Us?</h2>
+        <div class="benefits-grid">
+          <div class="benefit-item">
+            <strong>Premium UI/UX</strong>
+            <p>Modern aesthetics that reflect your brand's quality.</p>
+          </div>
+          <div class="benefit-item">
+            <strong>Timely Delivery</strong>
+            <p>Optimized processes to meet every deadline.</p>
+          </div>
+          <div class="benefit-item">
+            <strong>Dedicated Support</strong>
+            <p>Post-launch maintenance and security updates.</p>
+          </div>
+          <div class="benefit-item">
+            <strong>Secure & Scalable</strong>
+            <p>Ready to grow with your institution.</p>
+          </div>
+        </div>
+      </section>
+
+      <div
+        class="intro-text"
+        style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px"
+      >
+        <p>
+          <strong>Conclusion:</strong> We look forward to building a strong
+          digital presence for <strong>GNANA MUDRA VIDYA MANDIR</strong>.
+        </p>
+      </div>
+
+      <section class="acceptance-section">
+        <div class="signature-box">
+          <p><strong>For GNANA MUDRA VIDYA MANDIR</strong></p>
+          <div class="sig-line"></div>
+          <div class="sig-label">Authorized Signature</div>
+          <div class="sig-line"></div>
+          <div class="sig-label">Name & Date</div>
+        </div>
+        <div class="signature-box">
+          <p><strong>For AROUZA TECHLABS</strong></p>
+          <div class="sig-line"></div>
+          <div class="sig-label">Authorized Signatory</div>
+          <div class="sig-line"></div>
+          <div class="sig-label">Name & Date</div>
+        </div>
+      </section>
+
+      <footer>
+        <p>📧 contact@arouzatechlabs.in | 🌐 www.arouzatechlabs.in</p>
+        <p style="margin-top: 5px">
+          &copy; 2026 Arouza Techlabs. All rights reserved.
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>
